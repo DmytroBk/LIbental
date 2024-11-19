@@ -10,8 +10,8 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/filter.css">
-<link rel="stylesheet" href="css/nouislider.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -35,9 +35,8 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/tailDT.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/wNumb.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-search.js"></script>
         <script src="data/Municipalboundary_2.js"></script>
         <script src="data/Cadastre_3.js"></script>
         <script src="data/Land_plots_4.js"></script>
@@ -503,6 +502,16 @@
         });
         bounds_group.addLayer(layer_WTG_Coordinates_20240710_5);
         map.addLayer(layer_WTG_Coordinates_20240710_5);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
         var overlaysTree = [
         {label: '<b>For_publish</b>', selectAllCheckbox: true, children: [
             {label: '<img src="legend/WTG_Coordinates_20240710_5.png" /> WTG_Coordinates_2024.07.10', layer: layer_WTG_Coordinates_20240710_5},
@@ -598,228 +607,13 @@
               addLabel(layer, i);
               i++;
         });
-        var mapDiv = document.getElementById('map');
-        var row = document.createElement('div');
-        row.className="row";
-        row.id="all";
-        row.style.height = "100%";
-        var col1 = document.createElement('div');
-        col1.className="col9";
-        col1.id = "mapWindow";
-        col1.style.height = "99%";
-        col1.style.width = "80%";
-        col1.style.display = "inline-block";
-        var col2 = document.createElement('div');
-        col2.className="col3";
-        col2.id = "menu";
-        col2.style.display = "inline-block";
-        mapDiv.parentNode.insertBefore(row, mapDiv);
-        document.getElementById("all").appendChild(col1);
-        document.getElementById("all").appendChild(col2);
-        col1.appendChild(mapDiv)
-        var Filters = {"Property": "str","Field2": "str"};
-        function filterFunc() {
-          map.eachLayer(function(lyr){
-          if ("options" in lyr && "dataVar" in lyr["options"]){
-            features = this[lyr["options"]["dataVar"]].features.slice(0);
-            try{
-              for (key in Filters){
-                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
-                if (Filters[key] == "str" || Filters[key] == "bool"){
-                  var selection = [];
-                  var options = document.getElementById("sel_" + keyS).options
-                  for (var i=0; i < options.length; i++) {
-                    if (options[i].selected) selection.push(options[i].value);
-                  }
-                    try{
-                      if (key in features[0].properties){
-                        for (i = features.length - 1;
-                          i >= 0; --i){
-                          if (selection.indexOf(
-                          features[i].properties[key])<0
-                          && selection.length>0) {
-                          features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                  }
-                }
-                if (Filters[key] == "int"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (parseInt(features[i].properties[key])
-                          < sliderVals[0]
-                          || parseInt(features[i].properties[key])
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "real"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (features[i].properties[key]
-                          < sliderVals[0]
-                          || features[i].properties[key]
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "date"
-                  || Filters[key] == "datetime"
-                  || Filters[key] == "time"){
-                  try{
-                    if (key in features[0].properties){
-                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
-                      startdate = document.getElementById("dat_" +
-                        HTMLkey + "_date1").value.replace(" ", "T");
-                      enddate = document.getElementById("dat_" +
-                        HTMLkey + "_date2").value.replace(" ", "T");
-                      for (i = features.length - 1; i >= 0; --i){
-                        if (features[i].properties[key] < startdate
-                          || features[i].properties[key] > enddate){
-                          features.splice(i,1);
-                        }
-                      }
-                    }
-                  } catch(err){
-                  }
-                }
-              }
-            } catch(err){
-            }
-          this[lyr["options"]["layerName"]].clearLayers();
-          this[lyr["options"]["layerName"]].addData(features);
-        var i = 0;
-        layer_Municipalboundary_2.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((exp_label_Municipalboundary_2_eval_expression(context) !== null?String('<div style="color: #5291a5; font-size: 2pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + exp_label_Municipalboundary_2_eval_expression(context)) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Municipalboundary_2'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-        var i = 0;
-        layer_WTG_Coordinates_20240710_5.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['�'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['�']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_WTG_Coordinates_20240710_5'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-          }
-          })
-        }
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_Property = document.createElement('div');
-            div_Property.id = "div_Property";
-            div_Property.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Property);
-            sel_Property = document.createElement('select');
-            sel_Property.multiple = true;
-            sel_Property.size = 5;
-            sel_Property.id = "sel_Property";
-            var Property_options_str = "<option value='' unselected></option>";
-            sel_Property.onchange = function(){filterFunc()};
-            Property_options_str  += '<option value="NULL">NULL</option>';
-            Property_options_str  += '<option value="Not inventoried">Not inventoried</option>';
-            Property_options_str  += '<option value="державна">державна</option>';
-            Property_options_str  += '<option value="комунальна">комунальна</option>';
-            Property_options_str  += '<option value="приватна">приватна</option>';
-            sel_Property.innerHTML = Property_options_str;
-            div_Property.appendChild(sel_Property);
-            var lab_Property = document.createElement('div');
-            lab_Property.innerHTML = 'Property';
-            lab_Property.className = 'filterlabel';
-            div_Property.appendChild(lab_Property);
-            var reset_Property = document.createElement('div');
-            reset_Property.innerHTML = 'clear filter';
-            reset_Property.className = 'filterlabel';
-            reset_Property.onclick = function() {
-                var options = document.getElementById("sel_Property").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_Property.appendChild(reset_Property);
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_Field2 = document.createElement('div');
-            div_Field2.id = "div_Field2";
-            div_Field2.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Field2);
-            sel_Field2 = document.createElement('select');
-            sel_Field2.multiple = true;
-            sel_Field2.size = 10;
-            sel_Field2.id = "sel_Field2";
-            var Field2_options_str = "<option value='' unselected></option>";
-            sel_Field2.onchange = function(){filterFunc()};
-            Field2_options_str  += '<option value="SS new">SS new</option>';
-            Field2_options_str  += '<option value="WTG 01">WTG 01</option>';
-            Field2_options_str  += '<option value="WTG 02">WTG 02</option>';
-            Field2_options_str  += '<option value="WTG 03">WTG 03</option>';
-            Field2_options_str  += '<option value="WTG 05">WTG 05</option>';
-            Field2_options_str  += '<option value="WTG 06">WTG 06</option>';
-            Field2_options_str  += '<option value="WTG 07">WTG 07</option>';
-            Field2_options_str  += '<option value="WTG 08">WTG 08</option>';
-            Field2_options_str  += '<option value="WTG 12">WTG 12</option>';
-            Field2_options_str  += '<option value="WTG 24">WTG 24</option>';
-            Field2_options_str  += '<option value="WTG 25">WTG 25</option>';
-            Field2_options_str  += '<option value="WTG 26">WTG 26</option>';
-            Field2_options_str  += '<option value="WTG 27">WTG 27</option>';
-            Field2_options_str  += '<option value="WTG 28">WTG 28</option>';
-            Field2_options_str  += '<option value="WTG 29">WTG 29</option>';
-            Field2_options_str  += '<option value="WTG 30">WTG 30</option>';
-            Field2_options_str  += '<option value="WTG 31">WTG 31</option>';
-            Field2_options_str  += '<option value="WTG 32">WTG 32</option>';
-            Field2_options_str  += '<option value="WTG 33">WTG 33</option>';
-            Field2_options_str  += '<option value="WTG 34">WTG 34</option>';
-            Field2_options_str  += '<option value="WTG 37">WTG 37</option>';
-            Field2_options_str  += '<option value="WTG 38">WTG 38</option>';
-            Field2_options_str  += '<option value="WTG 39">WTG 39</option>';
-            Field2_options_str  += '<option value="дорога">дорога</option>';
-            sel_Field2.innerHTML = Field2_options_str;
-            div_Field2.appendChild(sel_Field2);
-            var lab_Field2 = document.createElement('div');
-            lab_Field2.innerHTML = 'Field2';
-            lab_Field2.className = 'filterlabel';
-            div_Field2.appendChild(lab_Field2);
-            var reset_Field2 = document.createElement('div');
-            reset_Field2.innerHTML = 'clear filter';
-            reset_Field2.className = 'filterlabel';
-            reset_Field2.onclick = function() {
-                var options = document.getElementById("sel_Field2").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_Field2.appendChild(reset_Field2);
+        map.addControl(new L.Control.Search({
+            layer: layer_Land_plots_4,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Cad_num'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
         resetLabels([layer_Municipalboundary_2,layer_Cadastre_3,layer_Land_plots_4,layer_WTG_Coordinates_20240710_5]);
         map.on("zoomend", function(){
             resetLabels([layer_Municipalboundary_2,layer_Cadastre_3,layer_Land_plots_4,layer_WTG_Coordinates_20240710_5]);
