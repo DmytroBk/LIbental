@@ -10,8 +10,6 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-search.css">
-        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -35,8 +33,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-        <script src="js/leaflet-search.js"></script>
         <script src="data/Municipalboundary_2.js"></script>
         <script src="data/Cadastre_3.js"></script>
         <script src="data/Land_plots_4.js"></script>
@@ -59,7 +55,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[46.38677955306075,30.340697391229316],[46.47366983094588,30.55746464002205]]);
+        }).fitBounds([[46.38523620563796,30.349372444192284],[46.472142582912184,30.566146532442968]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -502,16 +498,6 @@
         });
         bounds_group.addLayer(layer_WTG_Coordinates_20240710_5);
         map.addLayer(layer_WTG_Coordinates_20240710_5);
-        var osmGeocoder = new L.Control.Geocoder({
-            collapsed: true,
-            position: 'topleft',
-            text: 'Search',
-            title: 'Testing'
-        }).addTo(map);
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search for a place';
         var overlaysTree = [
         {label: '<b>For_publish</b>', selectAllCheckbox: true, children: [
             {label: '<img src="legend/WTG_Coordinates_20240710_5.png" /> WTG_Coordinates_2024.07.10', layer: layer_WTG_Coordinates_20240710_5},
@@ -607,13 +593,6 @@
               addLabel(layer, i);
               i++;
         });
-        map.addControl(new L.Control.Search({
-            layer: layer_Land_plots_4,
-            initial: false,
-            hideMarkerOnCollapse: true,
-            propertyName: 'Cad_num'}));
-        document.getElementsByClassName('search-button')[0].className +=
-         ' fa fa-binoculars';
         resetLabels([layer_Municipalboundary_2,layer_Cadastre_3,layer_Land_plots_4,layer_WTG_Coordinates_20240710_5]);
         map.on("zoomend", function(){
             resetLabels([layer_Municipalboundary_2,layer_Cadastre_3,layer_Land_plots_4,layer_WTG_Coordinates_20240710_5]);
