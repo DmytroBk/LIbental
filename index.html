@@ -184,8 +184,7 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Cad_num</th>\
-                        <td class="visible-with-data" id="Cad_num">' + (feature.properties['Cad_num'] !== null ? autolinker.link(feature.properties['Cad_num'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Cad_num'] !== null ? autolinker.link(feature.properties['Cad_num'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
