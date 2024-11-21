@@ -37,6 +37,11 @@
         <script src="data/Cadastre_3.js"></script>
         <script src="data/Land_plots_4.js"></script>
         <script src="data/WTG_Coordinates_20240710_5.js"></script>
+        <script src="data/Roads_6.js"></script>
+        <script src="data/Temporary_7.js"></script>
+        <script src="data/WTG_8.js"></script>
+        <script src="data/Fundation_9.js"></script>
+        <script src="data/Hardstand_10.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -55,7 +60,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[46.38523620563796,30.349372444192284],[46.472142582912184,30.566146532442968]]);
+        }).fitBounds([[46.388181233184355,30.35807136024631],[46.4751038349998,30.574870238396816]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -498,7 +503,213 @@
         });
         bounds_group.addLayer(layer_WTG_Coordinates_20240710_5);
         map.addLayer(layer_WTG_Coordinates_20240710_5);
+        function pop_Roads_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Roads_6_0() {
+            return {
+                pane: 'pane_Roads_6',
+                opacity: 1,
+                color: 'rgba(18,37,208,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Roads_6');
+        map.getPane('pane_Roads_6').style.zIndex = 406;
+        map.getPane('pane_Roads_6').style['mix-blend-mode'] = 'normal';
+        var layer_Roads_6 = new L.geoJson(json_Roads_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Roads_6',
+            layerName: 'layer_Roads_6',
+            pane: 'pane_Roads_6',
+            onEachFeature: pop_Roads_6,
+            style: style_Roads_6_0,
+        });
+        bounds_group.addLayer(layer_Roads_6);
+        map.addLayer(layer_Roads_6);
+        function pop_Temporary_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Temporary_7_0() {
+            return {
+                pane: 'pane_Temporary_7',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Temporary_7');
+        map.getPane('pane_Temporary_7').style.zIndex = 407;
+        map.getPane('pane_Temporary_7').style['mix-blend-mode'] = 'normal';
+        var layer_Temporary_7 = new L.geoJson(json_Temporary_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Temporary_7',
+            layerName: 'layer_Temporary_7',
+            pane: 'pane_Temporary_7',
+            onEachFeature: pop_Temporary_7,
+            style: style_Temporary_7_0,
+        });
+        bounds_group.addLayer(layer_Temporary_7);
+        map.addLayer(layer_Temporary_7);
+        function pop_WTG_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_WTG_8_0() {
+            return {
+                pane: 'pane_WTG_8',
+                opacity: 1,
+                color: 'rgba(209,38,178,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_WTG_8');
+        map.getPane('pane_WTG_8').style.zIndex = 408;
+        map.getPane('pane_WTG_8').style['mix-blend-mode'] = 'normal';
+        var layer_WTG_8 = new L.geoJson(json_WTG_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_WTG_8',
+            layerName: 'layer_WTG_8',
+            pane: 'pane_WTG_8',
+            onEachFeature: pop_WTG_8,
+            style: style_WTG_8_0,
+        });
+        bounds_group.addLayer(layer_WTG_8);
+        map.addLayer(layer_WTG_8);
+        function pop_Fundation_9(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Fundation_9_0() {
+            return {
+                pane: 'pane_Fundation_9',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '12.0,6.0',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Fundation_9');
+        map.getPane('pane_Fundation_9').style.zIndex = 409;
+        map.getPane('pane_Fundation_9').style['mix-blend-mode'] = 'normal';
+        var layer_Fundation_9 = new L.geoJson(json_Fundation_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Fundation_9',
+            layerName: 'layer_Fundation_9',
+            pane: 'pane_Fundation_9',
+            onEachFeature: pop_Fundation_9,
+            style: style_Fundation_9_0,
+        });
+        bounds_group.addLayer(layer_Fundation_9);
+        map.addLayer(layer_Fundation_9);
+        function pop_Hardstand_10(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Hardstand_10_0() {
+            return {
+                pane: 'pane_Hardstand_10',
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Hardstand_10');
+        map.getPane('pane_Hardstand_10').style.zIndex = 410;
+        map.getPane('pane_Hardstand_10').style['mix-blend-mode'] = 'normal';
+        var layer_Hardstand_10 = new L.geoJson(json_Hardstand_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Hardstand_10',
+            layerName: 'layer_Hardstand_10',
+            pane: 'pane_Hardstand_10',
+            onEachFeature: pop_Hardstand_10,
+            style: style_Hardstand_10_0,
+        });
+        bounds_group.addLayer(layer_Hardstand_10);
+        map.addLayer(layer_Hardstand_10);
         var overlaysTree = [
+        {label: '<b>211124_Libental</b>', selectAllCheckbox: true, children: [
+            {label: '<img src="legend/Hardstand_10.png" /> Hardstand', layer: layer_Hardstand_10},
+            {label: '<img src="legend/Fundation_9.png" /> Fundation', layer: layer_Fundation_9},
+            {label: '<img src="legend/WTG_8.png" /> WTG', layer: layer_WTG_8},
+            {label: '<img src="legend/Temporary_7.png" /> Temporary', layer: layer_Temporary_7},
+            {label: '<img src="legend/Roads_6.png" /> Roads', layer: layer_Roads_6},]},
         {label: '<b>For_publish</b>', selectAllCheckbox: true, children: [
             {label: '<img src="legend/WTG_Coordinates_20240710_5.png" /> WTG_Coordinates_2024.07.10', layer: layer_WTG_Coordinates_20240710_5},
             {label: 'Land_plots<br /><table><tr><td style="text-align: center;"><img src="legend/Land_plots_4_StatepropertyPermanent0.png" /></td><td>State property (Permanent)</td></tr><tr><td style="text-align: center;"><img src="legend/Land_plots_4_StatepropertyTemporary1.png" /></td><td>State property (Temporary)</td></tr><tr><td style="text-align: center;"><img src="legend/Land_plots_4_CommunalpropertyPermanent2.png" /></td><td>Communal property (Permanent)</td></tr><tr><td style="text-align: center;"><img src="legend/Land_plots_4_CommunalpropertyTemporary3.png" /></td><td>Communal property (Temporary)</td></tr><tr><td style="text-align: center;"><img src="legend/Land_plots_4_PrivatepropertyPermanent4.png" /></td><td>Private property (Permanent)</td></tr><tr><td style="text-align: center;"><img src="legend/Land_plots_4_PrivatepropertyTemporary5.png" /></td><td>Private property  (Temporary)</td></tr><tr><td style="text-align: center;"><img src="legend/Land_plots_4_Noproperty6.png" /></td><td>No property</td></tr></table>', layer: layer_Land_plots_4},
