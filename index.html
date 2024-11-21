@@ -184,24 +184,8 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Type</th>\
-                        <td class="visible-with-data" id="Type">' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">Cad_num</th>\
                         <td class="visible-with-data" id="Cad_num">' + (feature.properties['Cad_num'] !== null ? autolinker.link(feature.properties['Cad_num'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Property</th>\
-                        <td class="visible-with-data" id="Property">' + (feature.properties['Property'] !== null ? autolinker.link(feature.properties['Property'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Status</th>\
-                        <td class="visible-with-data" id="Status">' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Purpose of land</th>\
-                        <td class="visible-with-data" id="Purpose of land">' + (feature.properties['Purpose of land'] !== null ? autolinker.link(feature.properties['Purpose of land'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
