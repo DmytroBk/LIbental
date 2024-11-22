@@ -757,7 +757,7 @@ function fnc_project_color(values, context) {
 
 
 
-function exp_label_Municipalboundary_2_eval_expression(context) {
+function exp_label_MunicipalboundaryEPSG32636_1_eval_expression(context) {
     // Name || '\n' || Cad_num
 
     var feature = context.feature;
@@ -770,7 +770,7 @@ function exp_label_Municipalboundary_2_eval_expression(context) {
 }
 
 
-function exp_Land_plots_4rule0_eval_expression(context) {
+function exp_Land_plotsEPSG32636_3rule0_eval_expression(context) {
     // Property = 'державна' AND Type = 'Permanent'
 
     var feature = context.feature;
@@ -783,7 +783,7 @@ function exp_Land_plots_4rule0_eval_expression(context) {
 }
 
 
-function exp_Land_plots_4rule1_eval_expression(context) {
+function exp_Land_plotsEPSG32636_3rule1_eval_expression(context) {
     // Property = 'державна' AND Type = 'Temporary'
 
     var feature = context.feature;
@@ -796,7 +796,7 @@ function exp_Land_plots_4rule1_eval_expression(context) {
 }
 
 
-function exp_Land_plots_4rule2_eval_expression(context) {
+function exp_Land_plotsEPSG32636_3rule2_eval_expression(context) {
     // Property = 'комунальна' AND Type = 'Permanent'
 
     var feature = context.feature;
@@ -809,7 +809,7 @@ function exp_Land_plots_4rule2_eval_expression(context) {
 }
 
 
-function exp_Land_plots_4rule3_eval_expression(context) {
+function exp_Land_plotsEPSG32636_3rule3_eval_expression(context) {
     // Property = 'комунальна' AND Type = 'Temporary'
 
     var feature = context.feature;
@@ -822,7 +822,7 @@ function exp_Land_plots_4rule3_eval_expression(context) {
 }
 
 
-function exp_Land_plots_4rule4_eval_expression(context) {
+function exp_Land_plotsEPSG32636_3rule4_eval_expression(context) {
     // Property = 'приватна' AND Type = 'Permanent'
 
     var feature = context.feature;
@@ -835,7 +835,7 @@ function exp_Land_plots_4rule4_eval_expression(context) {
 }
 
 
-function exp_Land_plots_4rule5_eval_expression(context) {
+function exp_Land_plotsEPSG32636_3rule5_eval_expression(context) {
     // Property = 'приватна' AND Type = 'Temporary'
 
     var feature = context.feature;
@@ -848,7 +848,7 @@ function exp_Land_plots_4rule5_eval_expression(context) {
 }
 
 
-function exp_Land_plots_4rule6_eval_expression(context) {
+function exp_Land_plotsEPSG32636_3rule6_eval_expression(context) {
     // Property = 'Not inventoried'
 
     var feature = context.feature;
